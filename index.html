@@ -1,209 +1,237 @@
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa de Estudo dos Āsanas</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:transparent;--card-bg:#fff;--surface:#f7f6f2;--text:#2c2c2a;--text2:#5f5e5a;--text3:#888780;--border:#e2e0d8;--accent:#0F6E56;--accent-light:#E1F5EE;--accent-mid:#5DCAA5;--purple:#534AB7;--purple-light:#EEEDFE;--purple-mid:#AFA9EC;--coral:#D85A30;--coral-light:#FAECE7;--pink:#993556;--pink-light:#FBEAF0;--blue:#185FA5;--blue-light:#E6F1FB;--amber:#BA7517;--amber-light:#FAEEDA;--red:#A32D2D;--red-light:#FCEBEB;--green:#3B6D11;--green-light:#EAF3DE}
-@media(prefers-color-scheme:dark){:root{--card-bg:#2a2a28;--surface:#333331;--text:#e8e6df;--text2:#b4b2a9;--text3:#888780;--border:#444441;--accent:#5DCAA5;--accent-light:#085041;--accent-mid:#1D9E75;--purple:#AFA9EC;--purple-light:#26215C;--purple-mid:#534AB7;--coral:#F0997B;--coral-light:#4A1B0C;--pink:#ED93B1;--pink-light:#4B1528;--blue:#85B7EB;--blue-light:#042C53;--amber:#FAC775;--amber-light:#412402;--red:#F09595;--red-light:#501313;--green:#97C459;--green-light:#173404}}
-body{font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.6}
-h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif}
+body{font-family:'DM Sans',sans-serif;color:#2c2c2a;line-height:1.65;background:#faf9f6;-webkit-text-size-adjust:100%}
+@media(prefers-color-scheme:dark){body{background:#1a1a1a;color:#e8e6df}}
 
-.wrapper{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+.w{max-width:1200px;margin:0 auto;padding:2.5rem 2rem}
 
-.header{text-align:center;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
-.header h1{font-size:28px;font-weight:600;letter-spacing:-.5px;margin-bottom:4px}
-.header p{font-size:13px;color:var(--text3)}
+.hdr{text-align:center;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid #e2e0d8}
+@media(prefers-color-scheme:dark){.hdr{border-color:#444}}
+.hdr h1{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;margin-bottom:6px}
+.hdr p{font-size:15px;color:#888780}
 
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:2rem}
-.stat{background:var(--surface);border-radius:12px;padding:16px 12px;text-align:center}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:var(--accent);line-height:1.1}
-.stat-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.stat{background:#f0eee8;border-radius:12px;padding:18px 14px;text-align:center}
+@media(prefers-color-scheme:dark){.stat{background:#2a2a28}}
+.stat b{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:#0F6E56;display:block;line-height:1.1}
+@media(prefers-color-scheme:dark){.stat b{color:#5DCAA5}}
+.stat span{font-size:11px;color:#888780;text-transform:uppercase;letter-spacing:1px;margin-top:4px;display:block}
 
-.controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:8px}
-.view-toggle{display:flex;gap:2px;background:var(--surface);border-radius:8px;padding:3px}
-.view-btn{padding:7px 18px;border-radius:6px;border:none;background:transparent;cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--text3);transition:all .2s;font-weight:500}
-.view-btn.active{background:var(--card-bg);color:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.clear-btn{background:none;border:1px dashed var(--border);color:var(--text3);padding:6px 16px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.clear-btn:hover{border-color:var(--coral);color:var(--coral)}
+.fsec{background:#f0eee8;border-radius:14px;padding:22px 26px;margin-bottom:1.5rem}
+@media(prefers-color-scheme:dark){.fsec{background:#2a2a28}}
+.fg{margin-bottom:18px}.fg:last-child{margin-bottom:0}
+.fl{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#888780;margin-bottom:8px;font-weight:500;display:flex;align-items:center;gap:7px}
+.fl::before{content:'';width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.fl.fch::before{background:#7F77DD}.fl.fte::before{background:#1D9E75}.fl.fco::before{background:#D85A30}.fl.fpr::before{background:#378ADD}
+.fs{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-flex;align-items:center;padding:7px 18px;border-radius:22px;font-size:13px;cursor:pointer;border:1px solid #d3d1c7;background:#fff;color:#5f5e5a;transition:all .15s;user-select:none;font-family:'DM Sans',sans-serif}
+@media(prefers-color-scheme:dark){.tag{background:#333;border-color:#555;color:#b4b2a9}}
+.tag:hover{border-color:#888780}
+.tag.on[data-c="ch"]{background:#EEEDFE;color:#3C3489;border-color:#AFA9EC}
+.tag.on[data-c="te"]{background:#E1F5EE;color:#085041;border-color:#5DCAA5}
+.tag.on[data-c="co"]{background:#FAECE7;color:#712B13;border-color:#F0997B}
+.tag.on[data-c="pr"]{background:#E6F1FB;color:#0C447C;border-color:#85B7EB}
+@media(prefers-color-scheme:dark){
+.tag.on[data-c="ch"]{background:#26215C;color:#CECBF6;border-color:#7F77DD}
+.tag.on[data-c="te"]{background:#085041;color:#9FE1CB;border-color:#5DCAA5}
+.tag.on[data-c="co"]{background:#4A1B0C;color:#F5C4B3;border-color:#F0997B}
+.tag.on[data-c="pr"]{background:#042C53;color:#B5D4F4;border-color:#85B7EB}}
 
-.filter-section{margin-bottom:1.5rem;background:var(--surface);border-radius:14px;padding:20px 24px}
-.filter-group{margin-bottom:14px}
-.filter-group:last-child{margin-bottom:0}
-.filter-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:8px;font-weight:500;display:flex;align-items:center;gap:6px}
-.filter-label::before{content:'';width:6px;height:6px;border-radius:50%;display:inline-block}
-.filter-label.ch::before{background:var(--purple)}
-.filter-label.te::before{background:var(--accent)}
-.filter-label.co::before{background:var(--coral)}
-.filter-label.pr::before{background:var(--blue)}
-.filters{display:flex;flex-wrap:wrap;gap:6px}
-.tag{display:inline-flex;align-items:center;padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid var(--border);background:var(--card-bg);color:var(--text2);transition:all .15s;user-select:none;font-family:'DM Sans',sans-serif}
-.tag:hover{border-color:var(--text3);transform:translateY(-1px)}
-.tag.active{border-color:transparent;transform:translateY(-1px)}
-.tag.active[data-cat="chakra"]{background:var(--purple-light);color:var(--purple);border-color:var(--purple)}
-.tag.active[data-cat="terapeutico"]{background:var(--accent-light);color:var(--accent);border-color:var(--accent)}
-.tag.active[data-cat="contra"]{background:var(--coral-light);color:var(--coral);border-color:var(--coral)}
-.tag.active[data-cat="profunda"]{background:var(--blue-light);color:var(--blue);border-color:var(--blue)}
+.ctrls{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:8px}
+.vt{display:flex;gap:2px;background:#f0eee8;border-radius:10px;padding:3px}
+@media(prefers-color-scheme:dark){.vt{background:#2a2a28}}
+.vb{padding:9px 22px;border-radius:8px;border:none;background:transparent;cursor:pointer;font-size:14px;font-family:'DM Sans',sans-serif;color:#888780;transition:all .15s;font-weight:500}
+.vb.on{background:#fff;color:#0F6E56;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+@media(prefers-color-scheme:dark){.vb.on{background:#333;color:#5DCAA5}}
+.cb{background:none;border:1px dashed #b4b2a9;color:#888780;padding:8px 20px;border-radius:22px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.cb:hover{border-color:#D85A30;color:#D85A30}
+.mc{font-size:15px;color:#5f5e5a;margin-bottom:14px}.mc b{color:#0F6E56;font-weight:500}
+@media(prefers-color-scheme:dark){.mc{color:#b4b2a9}.mc b{color:#5DCAA5}}
 
-.match-count{font-size:13px;color:var(--text3);margin-bottom:16px}
-.match-count strong{color:var(--accent);font-weight:500}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all .3s;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:background .3s}
-.card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.06)}
-.card.highlight{border-color:var(--accent)}
-.card.highlight::before{background:var(--accent-mid)}
-.card.dimmed{opacity:.18;transform:scale(.97);pointer-events:none}
-
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #e2e0d8;border-radius:14px;overflow:hidden;transition:all .25s;padding:24px 28px}
+@media(prefers-color-scheme:dark){.card{background:#2a2a28;border-color:#444}}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.05)}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
-.card-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;line-height:1.2}
-.card-sanskrit{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text3);margin-top:2px}
-.card-page{font-size:10px;color:var(--text3);background:var(--surface);padding:3px 10px;border-radius:10px;white-space:nowrap;flex-shrink:0;margin-left:12px}
+.card-nm{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;line-height:1.2}
+.card-sub{font-size:14px;color:#888780;margin-top:3px}
+.card-pg{font-size:12px;color:#888780;background:#f0eee8;padding:5px 14px;border-radius:12px;white-space:nowrap;flex-shrink:0;margin-left:14px;height:fit-content}
+@media(prefers-color-scheme:dark){.card-pg{background:#333}}
+.cse{margin-top:14px}.csl{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:#b4b2a9;margin-bottom:6px;font-weight:500}
+.ct{display:flex;flex-wrap:wrap;gap:6px}
+.mt{font-size:12px;padding:5px 12px;border-radius:12px;display:inline-block;line-height:1.3}
+.mt.ch{background:#EEEDFE;color:#3C3489}.mt.te{background:#E1F5EE;color:#085041}.mt.co{background:#FAECE7;color:#712B13}.mt.pf{background:#E6F1FB;color:#0C447C}
+@media(prefers-color-scheme:dark){.mt.ch{background:#26215C;color:#CECBF6}.mt.te{background:#085041;color:#9FE1CB}.mt.co{background:#4A1B0C;color:#F5C4B3}.mt.pf{background:#042C53;color:#B5D4F4}}
+.card-cp{font-size:13px;color:#888780;margin-top:16px;padding-top:14px;border-top:1px dashed #e2e0d8}
+@media(prefers-color-scheme:dark){.card-cp{border-color:#444}}
+.card-cp b{font-weight:500;color:#5f5e5a}@media(prefers-color-scheme:dark){.card-cp b{color:#b4b2a9}}
 
-.card-section{margin-top:12px}
-.card-section-title{font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text3);margin-bottom:5px;font-weight:500}
-.card-tags{display:flex;flex-wrap:wrap;gap:4px}
-.mt{font-size:11px;padding:3px 10px;border-radius:10px;display:inline-block;line-height:1.4}
-.mt.ch{background:var(--purple-light);color:var(--purple)}
-.mt.te{background:var(--accent-light);color:var(--accent)}
-.mt.co{background:var(--coral-light);color:var(--coral)}
-.mt.pf{background:var(--blue-light);color:var(--blue)}
-.mt.extra{opacity:.55;font-style:italic}
+.tw{border:1px solid #e2e0d8;border-radius:14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(prefers-color-scheme:dark){.tw{border-color:#444}}
+.mx{width:100%;border-collapse:collapse;font-size:13px;min-width:900px}
+.mx th{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#888780;font-weight:500;padding:14px 10px;text-align:left;border-bottom:1px solid #e2e0d8;background:#f0eee8;position:sticky;top:0;z-index:1}
+@media(prefers-color-scheme:dark){.mx th{background:#2a2a28;border-color:#444}}
+.mx td{padding:12px 10px;border-bottom:1px solid #f0eee8;vertical-align:top}
+@media(prefers-color-scheme:dark){.mx td{border-color:#333}}
+.mx tbody tr:hover td{background:#f7f6f2}
+@media(prefers-color-scheme:dark){.mx tbody tr:hover td{background:#333}}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block;background:#7F77DD}
 
-.card-comp{font-size:12px;color:var(--text3);margin-top:14px;padding-top:10px;border-top:1px dashed var(--border)}
-.card-comp span{font-weight:500;color:var(--text2)}
+/* Mobile cards */
+.m-card{background:#fff;border:1px solid #e2e0d8;border-radius:14px;padding:20px;margin-bottom:14px}
+@media(prefers-color-scheme:dark){.m-card{background:#2a2a28;border-color:#444}}
+.m-card-nm{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:2px}
+.m-card-sub{font-size:13px;color:#888780;margin-bottom:4px}
+.m-card-pg{font-size:11px;color:#888780;margin-bottom:12px}
+.m-section{margin-bottom:12px}
+.m-section:last-child{margin-bottom:0}
+.m-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#b4b2a9;font-weight:500;margin-bottom:4px}
+.m-row{display:flex;flex-wrap:wrap;gap:4px}
+.m-dots{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.m-dot{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#5f5e5a}
+@media(prefers-color-scheme:dark){.m-dot{color:#b4b2a9}}
+.m-dot .dot{width:8px;height:8px}
 
-.table-wrap{border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.matrix{width:100%;border-collapse:collapse;font-size:12px}
-.matrix th{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);font-weight:500;padding:10px 8px;text-align:left;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:1}
-.matrix td{padding:10px 8px;border-bottom:1px solid var(--border);vertical-align:middle}
-.matrix tbody tr{transition:all .2s}
-.matrix tbody tr:hover td{background:var(--accent-light)}
-.matrix tbody tr.dimmed{opacity:.15}
-.matrix .dot{width:10px;height:10px;border-radius:50%;display:inline-block;background:var(--purple)}
-.matrix .asana-cell{min-width:130px}
-.matrix .asana-name{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;line-height:1.2}
-.matrix .asana-sub{font-size:10px;color:var(--text3);font-style:italic}
-.scroll-wrap{max-height:520px;overflow-y:auto}
-
-@media(max-width:700px){
-  .stats{grid-template-columns:repeat(2,1fr)}
+/* Responsive */
+@media(max-width:768px){
+  .w{padding:1.5rem 1rem}
+  .hdr h1{font-size:26px}
+  .hdr p{font-size:13px}
+  .stats{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat{padding:14px 10px}
+  .stat b{font-size:26px}
+  .fsec{padding:16px 18px}
+  .fg{margin-bottom:14px}
+  .fs{gap:6px}
+  .tag{padding:6px 14px;font-size:12px}
   .grid{grid-template-columns:1fr}
-  .wrapper{padding:1.5rem 1rem}
+  .card{padding:20px}
+  .card-nm{font-size:21px}
+  .vb{padding:8px 16px;font-size:13px}
+  .mx{min-width:auto}
+}
+@media(max-width:480px){
+  .w{padding:1rem 0.75rem}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .fsec{padding:14px 14px}
+  .tag{padding:5px 12px;font-size:11px}
+  .grid{grid-template-columns:1fr}
 }
 </style>
-
-<div class="wrapper">
-
-<div class="header">
-  <h1>Mapa de estudo dos āsanas</h1>
-  <p>Filtre por chakra, efeito, contraindicação ou ação profunda para encontrar conexões</p>
+</head>
+<body>
+<div class="w">
+<div class="hdr"><h1>Mapa de estudo dos āsanas</h1><p>Filtre por chakra, efeito, contraindicação ou ação profunda para encontrar conexões</p></div>
+<div class="stats" id="st"></div>
+<div class="fsec" id="fa"></div>
+<div class="ctrls"><div class="vt"><button class="vb on" onclick="sv('c')">Cards</button><button class="vb" onclick="sv('m')">Matriz</button></div><div id="cs"></div></div>
+<div class="mc" id="mc"></div>
+<div id="ca"></div>
 </div>
-
-<div class="stats" id="stats"></div>
-
-<div class="filter-section" id="filter-area"></div>
-
-<div class="controls">
-  <div class="view-toggle">
-    <button class="view-btn active" onclick="setView('cards')">Cards</button>
-    <button class="view-btn" onclick="setView('matrix')">Matriz</button>
-  </div>
-  <div id="clear-slot"></div>
-</div>
-
-<div class="match-count" id="match-count"></div>
-<div id="content-area"></div>
-
-</div>
-
 <script>
+
 const A=[
-  {n:"Tāḍāsana",t:"Postura da montanha",pg:"146-147",ch:["Mūlādhāra"],te:["Alongamento passivo","Estimula circulação","Fortalece músculos fracos","Estabilidade e firmeza"],co:[],pr:["Base sólida","Equilibra opostos","Senso de unidade","Ahiṃsā"],cp:""},
-  {n:"Bālāsana",t:"Postura da criança",pg:"84-85",ch:["Svādhiṣṭhāna","Maṇipūra"],te:["Relaxa coluna vertebral","Massagem intra-abdominal","Estimula peristaltismo intestinal","Tonifica pulmões","Apazigua sistema nervoso","Reduz estresse"],co:["Hipertensão","Hérnia de disco","Inflamações vertebrais","Hérnia de hiato"],pr:["Entrega e paz","Serenidade","Atua nos 7 chakras","Īśvara-praṇidhāna"],cp:"Pūrvottānāsana"},
-  {n:"Pavana-Muktāsana",t:"Postura purificadora",pg:"86-87",ch:["Maṇipūra"],te:["Flexibilidade coluna dorsal/lombar","Alivia dores costais","Estimula peristaltismo","Prisão de ventre","Expulsão de gases","Reduz hemorroidas","Relaxa região lombar","Tonifica sistema nervoso"],co:[],pr:["Recolhimento","Ativa plexo solar","Desintoxicação física e mental","Aparigraha"],cp:""},
-  {n:"Jānu-Śīrṣāsana",t:"Postura da cabeça no joelho",pg:"88-89",ch:["Svādhiṣṭhāna"],te:["Tonifica órgãos abdominais","Prisão de ventre","Problemas hepáticos","Dilatação da próstata","Ciática","Hemorroidas","Indicado para mulheres"],co:[],pr:["Efeito sobre funções sexuais","Transmuta energia em Ojas","Brahmacarya"],cp:""},
-  {n:"Paścimottānāsana",t:"Postura da pinça",pg:"90-91",ch:["Maṇipūra","Svādhiṣṭhāna"],te:["Estimulante vital","Relaxa sistema nervoso","Regulariza funções do baço/pâncreas/fígado","Vitaliza centros lombares e sacro","Prisão de ventre","Emagrecimento","Rejuvenescimento","Efeito curativo para diabetes"],co:[],pr:["Função repositora","Estimula produção de insulina"],cp:""},
-  {n:"Baddha-Koṇāsana",t:"Postura da borboleta",pg:"94-95",ch:["Svādhiṣṭhāna","Mūlādhāra"],te:["Abertura de quadril","Auxilia processo digestivo","Massagem nas vísceras","Relaxa região lombar","Ação tonificante geniturinário","Combate males da próstata","Perturbações menstruais","Dores ciáticas e lombares"],co:[],pr:["Relaxa sistema nervoso","Acalma mente e coração","Atua nos 3 chakras inferiores","Ahiṃsā"],cp:""},
-  {n:"Pāda-Hastāsana",t:"Postura das mãos nos pés",pg:"100-101",ch:["Svādhiṣṭhāna","Maṇipūra"],te:["Ação sobre músculos e nervos das pernas","Combate ciática","Dores lombares","Nevralgias membros inferiores","Tonifica órgãos abdominais","Ativação do fígado e pâncreas","Combate flatulência/constipação/indigestão","Tonifica gônadas","Eliminação de matéria tóxica"],co:[],pr:["Recolhimento e interiorização","Não-reação","Purificação dos 3 chakras inferiores","Ahiṃsā"],cp:""},
-  {n:"Uttānāsana",t:"Postura de estiramento intenso",pg:"102-103",ch:["Svādhiṣṭhāna","Maṇipūra"],te:["Ação sobre músculos posteriores das pernas","Combate ciática","Dores lombares e nevralgias","Tonifica órgãos abdominais","Fígado e pâncreas","Flatulência/constipação/indigestão","Remove problemas sexuais","Massagem intestinal","Eliminação de matéria tóxica"],co:[],pr:["Recolhimento e interiorização","Não-reação","Todos os chakras estimulados","Ahiṃsā"],cp:""},
-  {n:"Bhujaṅgāsana",t:"Postura da cobra",pg:"108-109",ch:["Anāhata","Maṇipūra"],te:["Restaura flexibilidade da coluna","Fortalece trapézio/dorsais/glúteos","Alonga glândulas e plexos nervosos","Combate problemas digestivos","Atua sobre próstata/bexiga","Prisão de ventre","Constipação/indigestão/disenteria","Massagem glândulas adrenais","Impede formação de cálculos renais"],co:["Hiperlordose lombar","Hipertensão","Cardíacos","Hérnia de hiato","Hérnia abdominal","Hipertireoidismo"],pr:["Ação sobre emoções ocultas","Liberação de ressentimento","Desperta Tapas","Anāhata e Maṇipūra tonificados"],cp:"Balāsana"},
-  {n:"Śalabhāsana",t:"Postura do gafanhoto",pg:"110-111",ch:["Svādhiṣṭhāna"],te:["Trabalha musculatura dorsal e abdominal","Distensão anterior das glândulas/plexos","Distensão zona renal","Elimina debilidades/frigidez sexuais","Fortalece músculos abdominais/lombares/sacros","Massageia vísceras","Maior elasticidade aos alvéolos","Revigora diafragma e músculo cardíaco","Prisão de ventre","Beneficia bexiga e próstata"],co:["Hiperlordose lombar","Hérnia abdominal","Cardíacos","Hipertensos"],pr:["Svādhiṣṭhāna tonificado","Energia psíquica e força vital","Estimula mente","Brahmacarya"],cp:"Balāsana"},
-  {n:"Dhanurāsana",t:"Postura do arco",pg:"112-113",ch:["Maṇipūra","Anāhata"],te:["Atua em toda coluna vertebral","Irrigação sanguínea e sistema nervoso","Tonifica aparelho digestivo/urinário/genital/respiratório","Corrige irregularidades menstruais","Tonifica órgãos abdominais","Estimula atividade endócrina","Dores costais","Prisão de ventre","Funções renais/hepáticas/intestinais","Regula secreção de insulina"],co:["Hiperlordose lombar","Hérnia abdominal","Cardíacos","Hipertensos"],pr:["Combate depressão e desânimo","Estimula vontade e determinação","Ação sobre chakra Maṇipūra","Poder de queimar emoções negativas","Tapas"],cp:"Balāsana"},
-  {n:"Setu-Bandhāsana",t:"Postura da ponte",pg:"118-119",ch:["Mūlādhāra","Maṇipūra","Anāhata","Viśuddha"],te:["Tonificação coluna lombar","Rejuvenesce coluna vertebral","Fortalece músculos costais","Expande região torácica","Atuação glandular (tireoide/suprarrenais)","Melhora digestão","Eliminação de toxinas","Alivia tensões do plexo solar","Reduz estresse"],co:["Hiperlordose lombar"],pr:["Acalma mente","Equilibra adrenalina e cortisol","Reduz estresse","Desperta Santoṣa"],cp:"Apānāsana"},
-  {n:"Matsyāsana",t:"Postura do peixe",pg:"122-123",ch:["Viśuddha","Ājñā","Sahasrāra"],te:["Estimula timo/tireoide/hipófise/pineal","Tonificação região urogenital","Abertura torácica","Concentração de sangue na cabeça","Estimula atividades cerebrais","Previne tensões nervosas","Fortalece musculatura torácica/abdominal/pescoço","Combate asma/bronquite","Estimula linfócitos (defesa)","Prevenção problemas de visão"],co:["Problemas cervicais","Glaucoma"],pr:["Libera emoções negativas","Abre Sahasrāra e Anāhata","Otimismo e autoconfiança","Paz e clareza mental","Bom para apáticos/melancólicos/depressivos","Desperta Santoṣa"],cp:""}
+{n:"Tāḍāsana",t:"Postura da montanha",pg:"146-147",ch:["Mūlādhāra"],te:["Alongamento passivo","Estimula circulação","Fortalece músculos fracos","Estabilidade e firmeza"],co:[],pr:["Base sólida","Equilibra opostos","Senso de unidade","Ahiṃsā"],cp:""},
+{n:"Bālāsana",t:"Postura da criança",pg:"84-85",ch:["Svādhiṣṭhāna","Maṇipūra"],te:["Relaxa coluna vertebral","Massagem intra-abdominal","Estimula peristaltismo intestinal","Tonifica pulmões","Apazigua sistema nervoso","Reduz estresse"],co:["Hipertensão","Hérnia de disco","Inflamações vertebrais","Hérnia de hiato"],pr:["Entrega e paz","Serenidade","Atua nos 7 chakras","Īśvara-praṇidhāna"],cp:"Pūrvottānāsana"},
+{n:"Pavana-Muktāsana",t:"Postura purificadora",pg:"86-87",ch:["Maṇipūra"],te:["Flexibilidade coluna dorsal/lombar","Alivia dores costais","Estimula peristaltismo","Prisão de ventre","Expulsão de gases","Reduz hemorroidas","Relaxa região lombar","Tonifica sistema nervoso"],co:[],pr:["Recolhimento","Ativa plexo solar","Desintoxicação física e mental","Aparigraha"],cp:""},
+{n:"Jānu-Śīrṣāsana",t:"Postura da cabeça no joelho",pg:"88-89",ch:["Svādhiṣṭhāna"],te:["Tonifica órgãos abdominais","Prisão de ventre","Problemas hepáticos","Dilatação da próstata","Ciática","Hemorroidas","Indicado para mulheres"],co:[],pr:["Efeito sobre funções sexuais","Transmuta energia em Ojas","Brahmacarya"],cp:""},
+{n:"Paścimottānāsana",t:"Postura da pinça",pg:"90-91",ch:["Maṇipūra","Svādhiṣṭhāna"],te:["Estimulante vital","Relaxa sistema nervoso","Regulariza funções do baço/pâncreas/fígado","Vitaliza centros lombares e sacro","Prisão de ventre","Emagrecimento","Rejuvenescimento","Efeito curativo para diabetes"],co:[],pr:["Função repositora","Estimula produção de insulina"],cp:""},
+{n:"Baddha-Koṇāsana",t:"Postura da borboleta",pg:"94-95",ch:["Svādhiṣṭhāna","Mūlādhāra"],te:["Abertura de quadril","Auxilia processo digestivo","Massagem nas vísceras","Relaxa região lombar","Ação tonificante geniturinário","Combate males da próstata","Perturbações menstruais","Dores ciáticas e lombares"],co:[],pr:["Relaxa sistema nervoso","Acalma mente e coração","Atua nos 3 chakras inferiores","Ahiṃsā"],cp:""},
+{n:"Pāda-Hastāsana",t:"Postura das mãos nos pés",pg:"100-101",ch:["Svādhiṣṭhāna","Maṇipūra"],te:["Ação sobre músculos e nervos das pernas","Combate ciática","Dores lombares","Nevralgias membros inferiores","Tonifica órgãos abdominais","Ativação do fígado e pâncreas","Combate flatulência/constipação/indigestão","Tonifica gônadas","Eliminação de matéria tóxica"],co:[],pr:["Recolhimento e interiorização","Não-reação","Purificação dos 3 chakras inferiores","Ahiṃsā"],cp:""},
+{n:"Uttānāsana",t:"Postura de estiramento intenso",pg:"102-103",ch:["Svādhiṣṭhāna","Maṇipūra"],te:["Ação sobre músculos posteriores das pernas","Combate ciática","Dores lombares e nevralgias","Tonifica órgãos abdominais","Fígado e pâncreas","Flatulência/constipação/indigestão","Remove problemas sexuais","Massagem intestinal","Eliminação de matéria tóxica"],co:[],pr:["Recolhimento e interiorização","Não-reação","Todos os chakras estimulados","Ahiṃsā"],cp:""},
+{n:"Bhujaṅgāsana",t:"Postura da cobra",pg:"108-109",ch:["Anāhata","Maṇipūra"],te:["Restaura flexibilidade da coluna","Fortalece trapézio/dorsais/glúteos","Alonga glândulas e plexos nervosos","Combate problemas digestivos","Atua sobre próstata/bexiga","Prisão de ventre","Constipação/indigestão/disenteria","Massagem glândulas adrenais","Impede formação de cálculos renais"],co:["Hiperlordose lombar","Hipertensão","Cardíacos","Hérnia de hiato","Hérnia abdominal","Hipertireoidismo"],pr:["Ação sobre emoções ocultas","Liberação de ressentimento","Desperta Tapas","Anāhata e Maṇipūra tonificados"],cp:"Balāsana"},
+{n:"Śalabhāsana",t:"Postura do gafanhoto",pg:"110-111",ch:["Svādhiṣṭhāna"],te:["Trabalha musculatura dorsal e abdominal","Distensão anterior das glândulas/plexos","Distensão zona renal","Elimina debilidades/frigidez sexuais","Fortalece músculos abdominais/lombares/sacros","Massageia vísceras","Maior elasticidade aos alvéolos","Revigora diafragma e músculo cardíaco","Prisão de ventre","Beneficia bexiga e próstata"],co:["Hiperlordose lombar","Hérnia abdominal","Cardíacos","Hipertensos"],pr:["Svādhiṣṭhāna tonificado","Energia psíquica e força vital","Estimula mente","Brahmacarya"],cp:"Balāsana"},
+{n:"Dhanurāsana",t:"Postura do arco",pg:"112-113",ch:["Maṇipūra","Anāhata"],te:["Atua em toda coluna vertebral","Irrigação sanguínea e sistema nervoso","Tonifica aparelho digestivo/urinário/genital/respiratório","Corrige irregularidades menstruais","Tonifica órgãos abdominais","Estimula atividade endócrina","Dores costais","Prisão de ventre","Funções renais/hepáticas/intestinais","Regula secreção de insulina"],co:["Hiperlordose lombar","Hérnia abdominal","Cardíacos","Hipertensos"],pr:["Combate depressão e desânimo","Estimula vontade e determinação","Ação sobre chakra Maṇipūra","Poder de queimar emoções negativas","Tapas"],cp:"Balāsana"},
+{n:"Setu-Bandhāsana",t:"Postura da ponte",pg:"118-119",ch:["Mūlādhāra","Maṇipūra","Anāhata","Viśuddha"],te:["Tonificação coluna lombar","Rejuvenesce coluna vertebral","Fortalece músculos costais","Expande região torácica","Atuação glandular (tireoide/suprarrenais)","Melhora digestão","Eliminação de toxinas","Alivia tensões do plexo solar","Reduz estresse"],co:["Hiperlordose lombar"],pr:["Acalma mente","Equilibra adrenalina e cortisol","Reduz estresse","Desperta Santoṣa"],cp:"Apānāsana"},
+{n:"Matsyāsana",t:"Postura do peixe",pg:"122-123",ch:["Viśuddha","Ājñā","Sahasrāra"],te:["Estimula timo/tireoide/hipófise/pineal","Tonificação região urogenital","Abertura torácica","Concentração de sangue na cabeça","Estimula atividades cerebrais","Previne tensões nervosas","Fortalece musculatura torácica/abdominal/pescoço","Combate asma/bronquite","Estimula linfócitos (defesa)","Prevenção problemas de visão"],co:["Problemas cervicais","Glaucoma"],pr:["Libera emoções negativas","Abre Sahasrāra e Anāhata","Otimismo e autoconfiança","Paz e clareza mental","Bom para apáticos/melancólicos/depressivos","Desperta Santoṣa"],cp:""}
 ];
 
-const allCh=[...new Set(A.flatMap(a=>a.ch))].sort();
-const popTe=["Prisão de ventre","Flexibilidade coluna","Combate problemas digestivos","Tonifica órgãos abdominais","Dores lombares","Ciática","Massagem nas vísceras","Tonifica sistema nervoso","Reduz estresse","Regula secreção de insulina","Fortalece musculatura","Estimula peristaltismo"];
-const allCo=[...new Set(A.flatMap(a=>a.co))].sort();
-const popPr=["Ahiṃsā","Brahmacarya","Tapas","Santoṣa","Aparigraha","Īśvara-praṇidhāna","Recolhimento e interiorização","Combate depressão e desânimo","Acalma mente","Entrega e paz","Liberação de ressentimento"];
-
-let F={chakra:new Set(),terapeutico:new Set(),contra:new Set(),profunda:new Set()};
-let view='cards';
-
-function setView(v){view=v;document.querySelectorAll('.view-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===(v==='cards'?'cards':'matriz')));render()}
-function tog(cat,val){F[cat].has(val)?F[cat].delete(val):F[cat].add(val);render()}
-function clr(){Object.keys(F).forEach(k=>F[k].clear());render()}
-
-function match(a){
-  const has=Object.values(F).some(s=>s.size>0);
-  if(!has)return true;
-  let m=true;
-  if(F.chakra.size)m=m&&[...F.chakra].some(v=>a.ch.includes(v));
-  if(F.terapeutico.size)m=m&&[...F.terapeutico].some(v=>a.te.some(t=>t.includes(v)));
-  if(F.contra.size)m=m&&[...F.contra].some(v=>a.co.some(c=>c.includes(v)));
-  if(F.profunda.size)m=m&&[...F.profunda].some(v=>a.pr.some(p=>p.includes(v)));
+var CHK_COL={"Mūlādhāra":"#E24B4A","Svādhiṣṭhāna":"#D85A30","Maṇipūra":"#BA7517","Anāhata":"#1D9E75","Viśuddha":"#378ADD","Ājñā":"#534AB7","Sahasrāra":"#D4537E"};
+var allCh=[...new Set(A.flatMap(function(a){return a.ch}))].sort();
+var popTe=["Prisão de ventre","Flexibilidade coluna","Combate problemas digestivos","Tonifica órgãos abdominais","Dores lombares","Ciática","Massagem nas vísceras","Tonifica sistema nervoso","Reduz estresse","Regula secreção de insulina"];
+var allCo=[...new Set(A.flatMap(function(a){return a.co}))].sort();
+var popPr=["Ahiṃsā","Brahmacarya","Tapas","Santoṣa","Aparigraha","Īśvara-praṇidhāna","Recolhimento e interiorização","Combate depressão e desânimo","Acalma mente","Entrega e paz"];
+var F={ch:new Set(),te:new Set(),co:new Set(),pr:new Set()};
+var V="c";
+function hasF(){return Object.values(F).some(function(s){return s.size>0})}
+function sv(v){V=v;document.querySelectorAll(".vb").forEach(function(b){b.classList.toggle("on",b.textContent==(v=="c"?"Cards":"Matriz"))});render()}
+function tog(c,v){F[c].has(v)?F[c].delete(v):F[c].add(v);render()}
+function clr(){Object.keys(F).forEach(function(k){F[k].clear()});render()}
+function mat(a){
+  if(!hasF())return true;var m=true;
+  if(F.ch.size)m=m&&[...F.ch].some(function(v){return a.ch.includes(v)});
+  if(F.te.size)m=m&&[...F.te].some(function(v){return a.te.some(function(t){return t.includes(v)})});
+  if(F.co.size)m=m&&[...F.co].some(function(v){return a.co.some(function(c){return c.includes(v)})});
+  if(F.pr.size)m=m&&[...F.pr].some(function(v){return a.pr.some(function(p){return p.includes(v)})});
   return m;
 }
-
-function esc(s){return s.replace(/'/g,"\\'")}
-function mkTag(cat,items){return items.map(i=>`<button class="tag${F[cat].has(i)?' active':''}" data-cat="${cat}" onclick="tog('${cat}','${esc(i)}')">${i}</button>`).join('')}
-
+function mkTag(cat,items){
+  return items.map(function(i){
+    var on=F[cat].has(i)?" on":"";
+    var dot="";
+    if(cat==="ch"&&CHK_COL[i]) dot="<span style=\"width:8px;height:8px;border-radius:50%;background:"+CHK_COL[i]+";display:inline-block;margin-right:5px;flex-shrink:0\"></span>";
+    return "<button class=\"tag"+on+"\" data-c=\""+cat+"\" onclick=\"tog(&quot;"+cat+"&quot;,&quot;"+i.replace(/&/g,"&amp;")+"&quot;)\" style=\"display:inline-flex;align-items:center\">"+dot+i+"</button>";
+  }).join("");
+}
+function isMobile(){return window.innerWidth<=768}
 function render(){
-  const has=Object.values(F).some(s=>s.size>0);
-  const results=A.map(a=>({...a,m:match(a)}));
-  const matched=results.filter(r=>r.m).length;
+  var hf=hasF(),res=A.filter(function(a){return !hf||mat(a)});
+  document.getElementById("st").innerHTML="<div class=\"stat\"><b>"+A.length+"</b><span>Āsanas</span></div><div class=\"stat\"><b>"+allCh.length+"</b><span>Chakras</span></div><div class=\"stat\"><b>"+allCo.length+"</b><span>Contraind.</span></div><div class=\"stat\"><b>6</b><span>Yamas/Niyamas</span></div>";
+  document.getElementById("fa").innerHTML="<div class=\"fg\"><div class=\"fl fch\">Chakras</div><div class=\"fs\">"+mkTag("ch",allCh)+"</div></div><div class=\"fg\"><div class=\"fl fte\">Efeitos terapêuticos</div><div class=\"fs\">"+mkTag("te",popTe)+"</div></div><div class=\"fg\"><div class=\"fl fco\">Contraindicações</div><div class=\"fs\">"+mkTag("co",allCo)+"</div></div><div class=\"fg\"><div class=\"fl fpr\">Ação profunda</div><div class=\"fs\">"+mkTag("pr",popPr)+"</div></div>";
+  document.getElementById("cs").innerHTML=hf?"<button class=\"cb\" onclick=\"clr()\">Limpar filtros</button>":"";
+  document.getElementById("mc").innerHTML=hf?"Mostrando <b>"+res.length+"</b> de "+A.length+" āsanas":"";
+  var ca=document.getElementById("ca");
 
-  document.getElementById('stats').innerHTML=`
-    <div class="stat"><div class="stat-num">${A.length}</div><div class="stat-label">Āsanas</div></div>
-    <div class="stat"><div class="stat-num">${allCh.length}</div><div class="stat-label">Chakras</div></div>
-    <div class="stat"><div class="stat-num">${allCo.length}</div><div class="stat-label">Contraindicações</div></div>
-    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Yamas / Niyamas</div></div>`;
+  if(V==="c"){
+    ca.innerHTML="<div class=\"grid\">"+res.map(function(a){
+      var h="<div class=\"card\"><div class=\"card-top\"><div><div class=\"card-nm\">"+a.n+"</div><div class=\"card-sub\">"+a.t+"</div></div><div class=\"card-pg\">p. "+a.pg+"</div></div>";
+      if(a.ch.length) h+="<div class=\"cse\"><div class=\"csl\">Chakras</div><div class=\"ct\">"+a.ch.map(function(c){return "<span class=\"mt ch\" style=\"display:inline-flex;align-items:center;gap:5px\"><span style=\"width:8px;height:8px;border-radius:50%;background:"+(CHK_COL[c]||"#7F77DD")+";flex-shrink:0\"></span>"+c+"</span>"}).join("")+"</div></div>";
+      h+="<div class=\"cse\"><div class=\"csl\">Efeitos terapêuticos</div><div class=\"ct\">"+a.te.map(function(t){return "<span class=\"mt te\">"+t+"</span>"}).join("")+"</div></div>";
+      if(a.co.length) h+="<div class=\"cse\"><div class=\"csl\">Contraindicações</div><div class=\"ct\">"+a.co.map(function(c){return "<span class=\"mt co\">"+c+"</span>"}).join("")+"</div></div>";
+      h+="<div class=\"cse\"><div class=\"csl\">Ação profunda</div><div class=\"ct\">"+a.pr.map(function(p){return "<span class=\"mt pf\">"+p+"</span>"}).join("")+"</div></div>";
+      if(a.cp) h+="<div class=\"card-cp\">Compensação: <b>"+a.cp+"</b></div>";
+      h+="</div>";
+      return h;
+    }).join("")+"</div>";
 
-  document.getElementById('filter-area').innerHTML=`
-    <div class="filter-group"><div class="filter-label ch">Chakras</div><div class="filters">${mkTag('chakra',allCh)}</div></div>
-    <div class="filter-group"><div class="filter-label te">Efeitos terapêuticos</div><div class="filters">${mkTag('terapeutico',popTe)}</div></div>
-    <div class="filter-group"><div class="filter-label co">Contraindicações</div><div class="filters">${mkTag('contra',allCo)}</div></div>
-    <div class="filter-group"><div class="filter-label pr">Ação profunda</div><div class="filters">${mkTag('profunda',popPr)}</div></div>`;
-
-  document.getElementById('clear-slot').innerHTML=has?`<button class="clear-btn" onclick="clr()">Limpar filtros</button>`:'';
-  document.getElementById('match-count').innerHTML=has?`Mostrando <strong>${matched}</strong> de ${A.length} āsanas`:'';
-
-  const area=document.getElementById('content-area');
-  if(view==='cards'){
-    area.innerHTML=`<div class="grid">${results.map(a=>{
-      const cls=has?(a.m?'card highlight':'card dimmed'):'card';
-      const showTe=5,showPr=3;
-      return `<div class="${cls}">
-        <div class="card-top"><div><div class="card-name">${a.t}</div><div class="card-sanskrit">${a.n}</div></div><div class="card-page">p. ${a.pg}</div></div>
-        ${a.ch.length?`<div class="card-section"><div class="card-section-title">Chakras</div><div class="card-tags">${a.ch.map(c=>`<span class="mt ch">${c}</span>`).join('')}</div></div>`:''}
-        <div class="card-section"><div class="card-section-title">Efeitos terapêuticos</div><div class="card-tags">${a.te.slice(0,showTe).map(t=>`<span class="mt te">${t}</span>`).join('')}${a.te.length>showTe?`<span class="mt te extra">+${a.te.length-showTe}</span>`:''}</div></div>
-        ${a.co.length?`<div class="card-section"><div class="card-section-title">Contraindicações</div><div class="card-tags">${a.co.map(c=>`<span class="mt co">${c}</span>`).join('')}</div></div>`:''}
-        <div class="card-section"><div class="card-section-title">Ação profunda</div><div class="card-tags">${a.pr.slice(0,showPr).map(p=>`<span class="mt pf">${p}</span>`).join('')}${a.pr.length>showPr?`<span class="mt pf extra">+${a.pr.length-showPr}</span>`:''}</div></div>
-        ${a.cp?`<div class="card-comp">Compensação: <span>${a.cp}</span></div>`:''}
-      </div>`}).join('')}</div>`;
   } else {
-    area.innerHTML=`<div class="table-wrap"><div class="scroll-wrap"><table class="matrix">
-      <thead><tr><th class="asana-cell">Āsana</th>${allCh.map(c=>`<th style="text-align:center"><span style="writing-mode:vertical-lr;transform:rotate(180deg);display:inline-block;max-height:90px;font-size:10px">${c}</span></th>`).join('')}<th>Efeitos-chave</th><th>Contra</th><th>Yama / Niyama</th></tr></thead>
-      <tbody>${results.map(a=>`<tr class="${has&&!a.m?'dimmed':''}">
-        <td class="asana-cell"><div class="asana-name">${a.t}</div><div class="asana-sub">${a.n}</div></td>
-        ${allCh.map(c=>`<td style="text-align:center">${a.ch.includes(c)?'<span class="dot"></span>':''}</td>`).join('')}
-        <td style="font-size:11px;max-width:200px">${a.te.slice(0,3).join(', ')}</td>
-        <td style="font-size:11px;color:var(--coral);max-width:140px">${a.co.length?a.co.join(', '):'—'}</td>
-        <td><span class="mt pf" style="font-size:10px">${a.pr[a.pr.length-1]||''}</span></td>
-      </tr>`).join('')}</tbody>
-    </table></div></div>`;
+    if(isMobile()){
+      // Mobile matrix: stacked cards with all info
+      ca.innerHTML=res.map(function(a){
+        var h="<div class=\"m-card\">";
+        h+="<div class=\"m-card-nm\">"+a.n+"</div>";
+        h+="<div class=\"m-card-sub\">"+a.t+"</div>";
+        h+="<div class=\"m-card-pg\">p. "+a.pg+"</div>";
+        h+="<div class=\"m-section\"><div class=\"m-label\">Chakras</div><div class=\"m-dots\">"+a.ch.map(function(c){return "<span class=\"m-dot\"><span class=\"dot\" style=\"background:"+(CHK_COL[c]||"#7F77DD")+"\"></span> "+c+"</span>"}).join("")+"</div></div>";
+        h+="<div class=\"m-section\"><div class=\"m-label\">Efeitos terapêuticos</div><div class=\"m-row\">"+a.te.map(function(t){return "<span class=\"mt te\">"+t+"</span>"}).join("")+"</div></div>";
+        if(a.co.length) h+="<div class=\"m-section\"><div class=\"m-label\">Contraindicações</div><div class=\"m-row\">"+a.co.map(function(c){return "<span class=\"mt co\">"+c+"</span>"}).join("")+"</div></div>";
+        h+="<div class=\"m-section\"><div class=\"m-label\">Ação profunda</div><div class=\"m-row\">"+a.pr.map(function(p){return "<span class=\"mt pf\">"+p+"</span>"}).join("")+"</div></div>";
+        if(a.cp) h+="<div class=\"card-cp\">Compensação: <b>"+a.cp+"</b></div>";
+        h+="</div>";
+        return h;
+      }).join("");
+    } else {
+      // Desktop matrix: full table with separate columns
+      var thCh=allCh.map(function(c){return "<th style=\"text-align:center;width:40px;padding:14px 4px\"><span style=\"writing-mode:vertical-lr;transform:rotate(180deg);display:inline-block;font-size:11px\">"+c+"</span></th>"}).join("");
+      var rows=res.map(function(a){
+        var dots=allCh.map(function(c){return "<td style=\"text-align:center\">"+(a.ch.includes(c)?"<span class=\"dot\" style=\"background:"+(CHK_COL[c]||"#7F77DD")+"\"></span>":"")+"</td>"}).join("");
+        var teCol=a.te.map(function(t){return "<span class=\"mt te\" style=\"margin:2px 0;display:inline-block\">"+t+"</span>"}).join(" ");
+        var prCol=a.pr.map(function(p){return "<span class=\"mt pf\" style=\"margin:2px 0;display:inline-block\">"+p+"</span>"}).join(" ");
+        var coCol=a.co.length?a.co.map(function(c){return "<span class=\"mt co\" style=\"margin:2px 0;display:inline-block\">"+c+"</span>"}).join(" "):"\u2014";
+        return "<tr><td style=\"min-width:160px\"><div style=\"font-family:Cormorant Garamond,serif;font-size:16px;font-weight:600\">"+a.n+"</div><div style=\"font-size:12px;color:#888780\">"+a.t+"</div></td>"+dots+"<td style=\"max-width:260px\">"+teCol+"</td><td style=\"max-width:200px\">"+prCol+"</td><td style=\"max-width:180px\">"+coCol+"</td></tr>";
+      }).join("");
+      ca.innerHTML="<div class=\"tw\"><table class=\"mx\"><thead><tr><th style=\"min-width:160px\">Āsana</th>"+thCh+"<th>Efeitos terapêuticos</th><th>Ação profunda</th><th>Contraindicações</th></tr></thead><tbody>"+rows+"</tbody></table></div>";
+    }
   }
 }
 render();
-</script>
+window.addEventListener("resize",function(){if(V==="m") render()});
+
+</script></body></html>
