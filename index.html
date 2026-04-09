@@ -163,6 +163,9 @@ body{font-family:'DM Sans',sans-serif;color:#2c2c2a;line-height:1.65;background:
 }
 @media(max-width:480px){.w{padding:1rem 0.75rem}.fsec{padding:14px 14px}.tag{padding:6px 12px;font-size:14px;min-height:44px}}
 
+
+.fs.capped{max-height:52px;overflow:hidden}
+.fs.capped.expanded{max-height:none}
 /* Modal */
 .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:100;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px}
 .modal-overlay.open{display:flex;align-items:flex-start;justify-content:center}
@@ -257,7 +260,7 @@ var popPr=allPr;
 var F={ch:new Set(),te:new Set(),co:new Set(),pr:new Set()};
 var V="c",panelOpen=true;
 var expanded={te:false,pr:false,co:false};
-var VISIBLE={te:20,pr:20,co:20};
+var VISIBLE={te:7,pr:7,co:7};
 var catLabel={ch:"Chakra",te:"Efeito",co:"Contra",pr:"Profunda"};
 var catClass={ch:"ch",te:"te",co:"co",pr:"pr"};
 
@@ -306,11 +309,7 @@ function mkTag(cat,popular,allItems,limit){
     if(cat==="ch"&&CHK[i]) dot='<span style="width:8px;height:8px;border-radius:50%;background:'+CHK[i]+';display:inline-block;margin-right:5px;flex-shrink:0"></span>';
     return '<button class="tag'+on+'" data-c="'+cat+'" onclick="tog(&quot;'+cat+'&quot;,&quot;'+i.replace(/&/g,"&amp;")+'&quot;)" style="display:inline-flex;align-items:center">'+dot+i+'</button>';
   }).join("");
-  if(limit&&allItems.length>limit){
-    var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>';
-    if(expanded[cat]) html+='<button class="more-btn open" onclick="toggleExpand(&quot;'+cat+'&quot;)">Menos'+arrow+'</button>';
-    else html+='<button class="more-btn" onclick="toggleExpand(&quot;'+cat+'&quot;)">+'+(allItems.length-(limit||0))+' mais'+arrow+'</button>';
-  }
+
   return html;
 }
 function renderChips(){
@@ -372,6 +371,13 @@ function closeModal(){
 }
 document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});
 
+
+function expandBtn(cat,total){
+  var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>';
+  if(expanded[cat]) return '<button class="more-btn open" onclick="toggleExpand(&quot;'+cat+'&quot;)">Menos'+arrow+'</button>';
+  return '<button class="more-btn" onclick="toggleExpand(&quot;'+cat+'&quot;)">Ver todos'+arrow+'</button>';
+}
+
 function render(){
   var hf=hasF(),res=A.filter(function(a){
     var matchFilter=!hf||mat(a);
@@ -383,9 +389,9 @@ function render(){
   document.getElementById("st").innerHTML='<div class="stat"><b>'+A.length+'</b><span>\u0100sanas</span></div><div class="stat"><b>'+allCh.length+'</b><span>Chakras</span></div><div class="stat"><b>'+allCo.length+'</b><span>Contraind.</span></div><div class="stat"><b>6</b><span>Yamas/Niyamas</span></div>';
   document.getElementById("fa").innerHTML=""
     +'<div class="fg"><div class="fl fch">Chakras</div><div class="fs">'+mkTag("ch",allCh,allCh)+'</div></div>'
-    +'<div class="fg"><div class="fl fte">Efeitos terap\u00eauticos</div><div class="fs">'+mkTag("te",popTe,allTe,VISIBLE.te)+'</div></div>'
-    +'<div class="fg"><div class="fl fpr">A\u00e7\u00e3o profunda</div><div class="fs">'+mkTag("pr",popPr,allPr,VISIBLE.pr)+'</div></div>'
-    +'<div class="fg"><div class="fl fco">Contraindica\u00e7\u00f5es</div><div class="fs">'+mkTag("co",allCo,allCo,VISIBLE.co)+'</div></div>';
+    +'<div class="fg"><div class="fl fte">Efeitos terap\u00eauticos</div><div class="fs'+(expanded.te?'':' capped')+'">'+mkTag("te",allTe,allTe)+'</div>'+(allTe.length>7?'<div style="margin-top:6px">'+expandBtn("te",allTe.length)+'</div>':'')+'</div>'
+    +'<div class="fg"><div class="fl fpr">A\u00e7\u00e3o profunda</div><div class="fs'+(expanded.pr?'':' capped')+'">'+mkTag("pr",allPr,allPr)+'</div>'+(allPr.length>7?'<div style="margin-top:6px">'+expandBtn("pr",allPr.length)+'</div>':'')+'</div>'
+    +'<div class="fg"><div class="fl fco">Contraindica\u00e7\u00f5es</div><div class="fs'+(expanded.co?'':' capped')+'">'+mkTag("co",allCo,allCo)+'</div>'+(allCo.length>7?'<div style="margin-top:6px">'+expandBtn("co",allCo.length)+'</div>':'')+'</div>';
   if(!panelOpen&&isMobile()) document.getElementById("fa").classList.add("collapsed");
   renderChips();
   document.getElementById("mc").innerHTML=hf?"Mostrando <b>"+res.length+"</b> de "+A.length+" \u0101sanas":"";
